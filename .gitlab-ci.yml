@@ -1,0 +1,14 @@
+cache:
+  paths:
+    - node_modules/
+
+deploy-nexus:
+  only:
+    - master
+    - develop
+    - /^release\/v[0-9]+\.x/
+    - /^release\/v[0-9]+\.x-dev/
+  script:
+    - ./scripts/deploy-nexus.sh
+  tags:
+    - cmq-dev

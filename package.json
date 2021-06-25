@@ -1,0 +1,59 @@
+{
+  "name": "fabernovel-openapi-generator",
+  "version": "3.0.4-SNAPSHOT",
+  "description": "",
+  "main": "lib/index.js",
+  "keywords": [],
+  "author": "Fabernovel",
+  "license": "UNLICENSED",
+  "scripts": {
+    "clean": "rimraf lib/*",
+    "build": "yarn run clean && tsc",
+    "build:debug": "yarn run clean && tsc --inlineSourceMap",
+    "watch": "yarn run clean && tsc -w --inlineSourceMap",
+    "debug": "node -r source-map-support/register --inspect ./lib/index.js",
+    "prepack": "yarn run build",
+    "prepare": "yarn run build",
+    "jest": "jest --coverage"
+  },
+  "dependencies": {
+    "cosmiconfig": "6.0.0",
+    "find-git-root": "^1.0.4",
+    "io-ts-codegen": "0.4.4",
+    "minimist": "1.2.5",
+    "swagger-parser": "8.0.3"
+  },
+  "devDependencies": {
+    "@types/minimist": "1.2.0",
+    "@types/node": "12.12.47",
+    "husky": "4.2.5",
+    "lint-staged": "10.2.11",
+    "prettier": "2.0.5",
+    "rimraf": "3.0.2",
+    "source-map-support": "0.5.19",
+    "ts-node": "8.10.2",
+    "typescript": "3.9.5"
+  },
+  "bin": {
+    "openapi-generator": "lib/index.js"
+  },
+  "files": [
+    "lib",
+    "src",
+    "static",
+    "package.json"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,json,md}": [
+      "prettier --write"
+    ]
+  },
+  "prettier": {
+    "printWidth": 80
+  }
+}
